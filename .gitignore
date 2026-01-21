@@ -1,0 +1,23 @@
+# --- LaTeX 编译产生的临时文件 (务必忽略) ---
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+*.dvi
+*.xdv
+
+# 二进制文件，容易冲突
+*.pdf
+
+# --- Mac 系统生成的隐藏文件 ---
+.DS_Store
+.DS_Store?
+
+# --- VS Code 配置文件 ---
+# 忽略，配置可能不同
+#.vscode/

@@ -1,0 +1,96 @@
+{
+// --- LaTeX Workshop 进阶配置 (Mac/Xiamen Univ 适配版) ---
+
+    // 1. 文件管理：将所有编译生成的中间文件扔进 /out 文件夹，保持根目录只有源码
+    "latex-workshop.latex.outDir": "%DIR%/out",
+
+    // 2. 默认编译链：首选 latexmk (xelatex 版本)
+    // latexmk 会自动处理参考文献引用和交叉索引，相当于全自动构建工具
+    "latex-workshop.latex.recipe.default": "latexmk (xelatex)",
+
+    // 3. 定义编译工具 (Tools)
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk_xelatex",
+            "command": "latexmk",
+            "args": [
+                "-xelatex",               // 指定使用 xelatex 引擎 (支持中文)
+                "-synctex=1",             // 开启正反向跳转
+                "-interaction=nonstopmode", // 遇到错误不暂停
+                "-file-line-error",       // 报错显示行号
+                "-outdir=%OUTDIR%",       // 输出到 out 文件夹
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "latexmk_pdflatex",
+            "command": "latexmk",
+            "args": [
+                "-pdf",                   // 默认 pdflatex
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "xelatex", // 备用的单次编译命令
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-output-directory=%OUTDIR%", // 注意这里也要指向 out
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%OUTDIR%/%DOCFILE%" // Bibtex 需要去 out 文件夹找 aux 文件
+            ]
+        }
+    ],
+
+    // 4. 定义编译配方 (Recipes)
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk (xelatex)", // 【中文论文首选】全自动
+            "tools": [
+                "latexmk_xelatex"
+            ]
+        },
+        {
+            "name": "latexmk (pdflatex)", // 【英文期刊首选】全自动
+            "tools": [
+                "latexmk_pdflatex"
+            ]
+        },
+        {
+            "name": "xelatex -> bibtex -> xelatex*2", // 传统手动链 (备用)
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        }
+    ],
+
+    // 5. 自动清理：编译成功后，自动删除 out 文件夹里的垃圾文件，只留 PDF
+    // 如果你想保留 log 文件查错，可以把 onBuilt 改为 onFailed 或 never
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.clean.subfolder.enabled": true,
+
+    // 6. PDF 阅读器设置
+    "latex-workshop.view.pdf.viewer": "tab", // 在 VS Code 标签页查看
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click", // 双击 PDF 跳转代码
+
+    // 7. 智能感知与自动补全
+    "latex-workshop.intellisense.package.enabled": true, // 自动补全包名
+    "latex-workshop.intellisense.citation.enabled": true, // 自动补全参考文献引用
+
+    // --- LaTeX Workshop 配置结束 ---
+}
