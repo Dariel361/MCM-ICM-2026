@@ -1,0 +1,44 @@
+{
+  "electrochemical": {
+    "description": "Battery Electrical Parameters",
+    "Cn": 14400.0,
+    "eta_ref": 0.98,          
+    "delta_eta": 0.003,       
+    "T_ref": 25.0,            
+    "R0_ref": 0.05,
+    "R1": 0.015,
+    "C1": 2000.0,
+    "R2": 0.02,
+    "C2": 6000.0,
+    "tau_d": 100.0,
+    "kd": 0.0005,
+    "a1": 0.12, 
+    "b1": -0.045,
+    "c1": 0.01, 
+    "d1": -0.01,
+    "gamma": 0.5,
+    "k_r0": 1.5
+  },
+  "thermal": {
+    "description": "Thermal Parameters",
+    "Cth": 65.0,
+    "Rth": 35.0
+  },
+  "soh_model": {
+    "description": "SOH Aging Model Parameters",
+    "A": 25.0,
+    "k": -0.06
+  },
+  "load_model": {
+    "description": "Power Load Simulation Parameters"
+  },
+  "simulation": {
+    "description": "Simulation Settings",
+    "dt": 1.0,
+    "total_time": 3600,
+    "T_amb": 25.00,
+    "initial_soc": 1.0,
+    "initial_temp": 25.0,
+    "battery_age_months": 0.0
+  }
+}
